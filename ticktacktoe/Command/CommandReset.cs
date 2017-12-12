@@ -8,7 +8,7 @@ using ticktacktoe.ViewModel;
 
 namespace ticktacktoe.Command
 {
-   public class CommandReset : ICommand
+    public class CommandReset : ICommand
     {
         private readonly TTTViewModel _viewModel;
 
@@ -19,12 +19,15 @@ namespace ticktacktoe.Command
 
         public bool CanExecute(object parameter)
         {
-            return false;
+            return true;
         }
 
         public void Execute(object parameter)
         {
-            throw new NotImplementedException();
+
+            _viewModel.TTTManager.ResetColltoBlank(_viewModel.Coll);
+            _viewModel.TTTManager.ResetCollVisualtoBlank(_viewModel.CollVisual);
+            _viewModel.currentPlayer = false;
         }
 
         public event EventHandler CanExecuteChanged;

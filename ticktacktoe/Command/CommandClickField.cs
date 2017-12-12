@@ -10,24 +10,42 @@ namespace ticktacktoe.Command
 {
     public class CommandClickField : ICommand
     {
-        //ctor in prop tttviewmodel 
-        // strg + leer = namen
-        //alt enter
-        //introduce readonly
-        private readonly TTTViewModel _viewModel;
+        private readonly TTTViewModel viewModel;
         public CommandClickField(TTTViewModel viewModel)
         {
-            _viewModel = viewModel;
+            this.viewModel = viewModel;
         }
 
         public bool CanExecute(object parameter)
         {
-            return false;
+            int b = int.Parse((string)parameter);
+            if (viewModel.Coll[b] == true || viewModel.Coll[b] == false)
+            {
+                return false;
+            }
+            return true;
         }
 
         public void Execute(object parameter)
         {
-            throw new NotImplementedException();
+            var param = int.Parse((string)parameter);
+
+            viewModel.TTTManager.ApplyNewButtonClick(viewModel.Coll, param, viewModel.currentPlayer);
+            viewModel.TTTManager.SetCollVisual(viewModel.Coll, viewModel.CollVisual);
+            if (viewModel.TTTManager.CheckIfWon(viewModel.Coll).HasValue)
+            {
+                if (viewModel.currentPlayer == true)
+                {
+                    viewModel.LastWinner = "O";
+                }
+                else
+                {
+                    viewModel.LastWinner = "X";
+                }
+            
+            }
+
+            viewModel.currentPlayer = !viewModel.currentPlayer;
         }
 
         public event EventHandler CanExecuteChanged;

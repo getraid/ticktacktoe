@@ -57,7 +57,6 @@
     <Compile Include="Command\CommandClickField.cs" />
     <Compile Include="Command\CommandReset.cs" />
     <Compile Include="Model\TTTManager.cs" />
-    <Compile Include="ViewModel\TTTData.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="ViewModel\TTTViewModel.cs" />
     <Page Include="tickView.xaml">
