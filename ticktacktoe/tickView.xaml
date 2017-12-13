@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ticktacktoe.ViewModel"
         mc:Ignorable="d"
-        Title="TickTackToe Application" Height="470.192" Width="424.038">
+        Title="TickTackToe Application" Height="470.192" Width="424.038" MinHeight="400" MinWidth="300">
 
     <Window.DataContext>
         <local:TTTViewModel/>

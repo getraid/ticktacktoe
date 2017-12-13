@@ -58,6 +58,7 @@ namespace ticktacktoe.Model
             coll[parameter] = (currentPlayer);
         }
 
+        [Obsolete]
         public bool? CheckIfWon(ObservableCollection<bool?> coll)
         {
             if (
@@ -68,10 +69,10 @@ namespace ticktacktoe.Model
                 (coll[1] == true & coll[4] == true & coll[7] == true) ||
                 (coll[2] == true & coll[5] == true & coll[8] == true) ||
                 (coll[0] == true & coll[4] == true & coll[8] == true) ||
-                (coll[2] == true & coll[4] == true & coll[6] == true) 
+                (coll[2] == true & coll[4] == true & coll[6] == true)
                 )
             {
-                MessageBox.Show("Spieler 'O' hat gewonnen!");
+
                 return true;
             }
             else if (
@@ -90,6 +91,38 @@ namespace ticktacktoe.Model
             }
 
             return null;
+        }
+
+        public bool? CheckIfWonEasy(ObservableCollection<bool?> coll)
+        {
+            bool temp = false;
+
+            for (int i = 0; i < 2; i++)
+            {
+                if ((coll[0] == temp & coll[1] == temp & coll[2] == temp) ||
+                (coll[3] == temp & coll[4] == temp & coll[5] == temp) ||
+                (coll[6] == temp & coll[7] == temp & coll[8] == temp) ||
+                (coll[0] == temp & coll[3] == temp & coll[6] == temp) ||
+                (coll[1] == temp & coll[4] == temp & coll[7] == temp) ||
+                (coll[2] == temp & coll[5] == temp & coll[8] == temp) ||
+                (coll[0] == temp & coll[4] == temp & coll[8] == temp) ||
+                (coll[2] == temp & coll[4] == temp & coll[6] == temp))
+                {
+                    if (temp)
+                    {
+                        MessageBox.Show("Spieler 'O' hat gewonnen!");
+                        return true;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Spieler 'X' hat gewonnen!");
+                        return false;
+                    }
+                }
+                temp = true;
+            }
+            return null;
+
         }
 
         public void SetCollVisual(ObservableCollection<bool?> coll, ObservableCollection<char> collV)

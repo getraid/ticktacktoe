@@ -10,11 +10,11 @@ namespace ticktacktoe.Command
 {
     public class CommandReset : ICommand
     {
-        private readonly TTTViewModel _viewModel;
+        private readonly TTTViewModel viewModel;
 
         public CommandReset(TTTViewModel viewModel)
         {
-            _viewModel = viewModel;
+            this.viewModel = viewModel;
         }
 
         public bool CanExecute(object parameter)
@@ -25,9 +25,9 @@ namespace ticktacktoe.Command
         public void Execute(object parameter)
         {
 
-            _viewModel.TTTManager.ResetColltoBlank(_viewModel.Coll);
-            _viewModel.TTTManager.ResetCollVisualtoBlank(_viewModel.CollVisual);
-            _viewModel.currentPlayer = false;
+            viewModel.TTTManager.ResetColltoBlank(viewModel.Coll);
+            viewModel.TTTManager.ResetCollVisualtoBlank(viewModel.CollVisual);
+            viewModel.currentPlayer = false;
         }
 
         public event EventHandler CanExecuteChanged;
