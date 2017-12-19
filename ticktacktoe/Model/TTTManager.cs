@@ -55,10 +55,17 @@ namespace ticktacktoe.Model
 
         public void ApplyNewButtonClick(ObservableCollection<bool?> coll, int parameter, bool? currentPlayer)
         {
-            coll[parameter] = (currentPlayer);
+            coll[parameter] = currentPlayer;
         }
 
-        [Obsolete]
+
+
+        /// <summary>
+        /// Fully frickin' hardcoded variant
+        /// </summary>
+        /// <param name="coll"></param>
+        /// <returns></returns>
+        [Obsolete("Use CheckEasyEasy instead", true)]
         public bool? CheckIfWon(ObservableCollection<bool?> coll)
         {
             if (
@@ -93,6 +100,14 @@ namespace ticktacktoe.Model
             return null;
         }
 
+
+
+        /// <summary>
+        /// Medium hardcoded variant
+        /// </summary>
+        /// <param name="coll"></param>
+        /// <returns></returns>
+        [Obsolete("Use CheckEasyEasy instead", true)]
         public bool? CheckIfWonEasy(ObservableCollection<bool?> coll)
         {
             bool temp = false;
@@ -123,6 +138,82 @@ namespace ticktacktoe.Model
             }
             return null;
 
+        }
+
+        /// <summary>
+        /// Non hardcoded variant
+        /// </summary>
+        /// <param name="coll"></param>
+        /// <returns></returns>
+        public bool? CheckifWonEasyEasy(ObservableCollection<bool?> coll)
+        {
+            bool temp = true;
+            bool? winner = null;
+
+            for (int j = 0; j < 2; j++)
+            {
+                winner = VertikalWinner(coll, temp, winner);
+
+                winner = HorizontalWinner(coll, temp, winner);
+
+                winner = DiagonalWinner(coll, temp, winner);
+
+                if (winner == true)
+                {
+                    MessageBox.Show("Spieler 'O' hat gewonnen!");
+                    return true;
+                }
+                else if (winner == false)
+                {
+                    MessageBox.Show("Spieler 'X' hat gewonnen!");
+                    return false;
+                }
+
+                temp = false;
+            }
+
+
+            return null;
+        }
+
+        private static bool? DiagonalWinner(ObservableCollection<bool?> coll, bool temp, bool? winner)
+        {
+            //Diagonal
+            for (int i = 0; i < 4; i = i + 2)
+            {
+                if (coll[i] == temp && coll[4] == temp && coll[8 - i] == temp)
+                {
+                    winner = temp;
+                }
+            }
+
+            return winner;
+        }
+
+        private static bool? HorizontalWinner(ObservableCollection<bool?> coll, bool temp, bool? winner)
+        {
+            //horizontal
+            for (int i = 0; i < 9; i = i + 3)
+            {
+                if (coll[i] == temp && coll[i + 1] == temp && coll[i + 2] == temp)
+                {
+                    winner = temp;
+                }
+            }
+            return winner;
+        }
+
+        private static bool? VertikalWinner(ObservableCollection<bool?> coll, bool temp, bool? winner)
+        {
+            //vertikal
+            for (int i = 0; i < 3; i++)
+            {
+                if (coll[i] == temp && coll[i + 3] == temp && coll[i + 6] == temp)
+                {
+                    winner = temp;
+                }
+            }
+            return winner;
         }
 
         public void SetCollVisual(ObservableCollection<bool?> coll, ObservableCollection<char> collV)

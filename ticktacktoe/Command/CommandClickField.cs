@@ -32,7 +32,7 @@ namespace ticktacktoe.Command
 
             viewModel.TTTManager.ApplyNewButtonClick(viewModel.Coll, param, viewModel.currentPlayer);
             viewModel.TTTManager.SetCollVisual(viewModel.Coll, viewModel.CollVisual);
-            if (viewModel.TTTManager.CheckIfWonEasy(viewModel.Coll).HasValue)
+            if (viewModel.TTTManager.CheckifWonEasyEasy(viewModel.Coll).HasValue)
             {
                 if (viewModel.currentPlayer == true)
                 {
